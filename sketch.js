@@ -8,12 +8,18 @@ function setup() {
   freqSlider.position(20, 750);
   fSelect = createSelect();
   fSelect.option('5hz cosine', 'cos5hz');
+  fSelect.option('5hz cosine + 1', 'cos5hzplus1');
+  fSelect.option('2hz cosine + 5Hz cosine', 'cos2plus5hz');
+  fSelect.option('2hz cosine + 5Hz cosine + 2', 'cos2plus5hzplus2');
   fSelect.option('5hz "rotation function" (e^ix or cosx + isinx)', 'expi5hz');
   fSelect.position(20, 20);
 }
 
 var funcs = {
-  cos5hz: (t) => 1 + Math.cos(t * (2 * Math.PI) * 5),
+  cos5hz: (t) => Math.cos(t * (2 * Math.PI) * 5),
+  cos5hzplus1: (t) => Math.cos(t * (2 * Math.PI) * 5) + 1,
+  cos2plus5hz: (t) => Math.cos(t * 2 * Math.PI * 2) + Math.cos(t * 2 * Math.PI * 5),
+  cos2plus5hzplus2: (t) => Math.cos(t * 2 * Math.PI * 2) + Math.cos(t * 2 * Math.PI * 5) + 2,
   expi5hz: (t) => math.exp(math.multiply(math.i, t, 2, math.pi, 5))
 }
 
