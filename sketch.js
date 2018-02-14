@@ -4,13 +4,12 @@ var f;
 
 function setup() { 
   createCanvas(400, 800);
-  frameRate(1);
   freqSlider = createSlider(0, 10, 5, 0.01);
   freqSlider.position(20, 750);
   fSelect = createSelect();
   fSelect.option('5hz cosine', 'cos5hz');
   fSelect.option('5hz "rotation function" (e^ix or cosx + isinx)', 'expi5hz');
-  fSelect.position(0, 0);
+  fSelect.position(20, 20);
 }
 
 var funcs = {
@@ -59,7 +58,7 @@ function draw() {
     var t = i/100;
     var x = t * 200 + 80;
     var ft = math.complex(f(t)).re;
-    var y = (1-ft) * 50 + 80;
+    var y = (1-ft) * 50 + 200;
     vertex(x, y);
   }
   endShape();
