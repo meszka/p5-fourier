@@ -1,15 +1,21 @@
 var freqSlider;
+var fSelect;
+var f;
 
 function setup() { 
   createCanvas(400, 800);
   frameRate(1);
   freqSlider = createSlider(0, 10, 5, 0.01);
   freqSlider.position(20, 750);
+  fSelect = createSelect();
+  fSelect.option('5hz cosine', 'cos5hz');
+  fSelect.option('5hz "rotation function" (e^ix or cosx + isinx)', 'expi5hz');
+  fSelect.position(0, 0);
 }
 
-function f(t) {
-  return 1 + Math.cos(t * (2 * Math.PI) * 5);
-  //return math.exp(math.multiply(math.i, t, 2, math.pi, 5));
+var funcs = {
+  cos5hz: (t) => 1 + Math.cos(t * (2 * Math.PI) * 5),
+  expi5hz: (t) => math.exp(math.multiply(math.i, t, 2, math.pi, 5))
 }
 
 function ftPoint(f, freq) {
@@ -20,6 +26,7 @@ function ftPoint(f, freq) {
 function draw() { 
   background(255);
   var freq = freqSlider.value();
+  f = funcs[fSelect.value()];
   stroke(0);
   fill(0);
   text(freq, 300, 750);
@@ -51,7 +58,8 @@ function draw() {
   for (var i = 1; i < 200; i++) {
     var t = i/100;
     var x = t * 200 + 80;
-    var y = (1-f(t)) * 50 + 80;
+    var ft = math.complex(f(t)).re;
+    var y = (1-ft) * 50 + 80;
     vertex(x, y);
   }
   endShape();
