@@ -35,12 +35,12 @@ function draw() {
   fill(0);
   text(freq, 300, 750);
   const ftp = ftPoint(f, freq);
-  const integral = math.bignumber('0');
+  let integral = math.bignumber('0');
 
   stroke(0);
   noFill();
   beginShape();
-  lastT = 0;
+  let lastT = 0;
   for (let i = 0; i < 2000; i++) {
     const t = i / 1000;
     const z = ftp(t);
